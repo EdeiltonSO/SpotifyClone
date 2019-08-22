@@ -1,26 +1,37 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Provider } from "react-redux";
+import { BrowserRouter } from "react-router-dom";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import GlobalStyle from "./styles/global";
+import Header from "./components/Header";
+import Sidebar from "./components/Sidebar";
+import Player from "./components/Player";
+import ErrorBox from "./components/ErrorBox";
+import { Wrapper, Container, Content } from "./styles/components";
+
+import Routes from "./routes";
+import store from "./store";
+
+import "./config/ReactotronConfig";
+// console.tron.log("App.js");
+
+const App = () => (
+  <Provider store={store}>
+    <GlobalStyle />
+    <BrowserRouter>
+      <Wrapper>
+        <Container>
+          <Sidebar />
+          <Content>
+            <ErrorBox />
+            <Header />
+            <Routes />
+          </Content>
+        </Container>
+        <Player />
+      </Wrapper>
+    </BrowserRouter>
+  </Provider>
+);
 
 export default App;
